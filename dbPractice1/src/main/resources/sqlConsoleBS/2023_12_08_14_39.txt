@@ -1,0 +1,47 @@
+CREATE TABLE IF NOT EXISTS users
+(
+    id serial PRIMARY KEY,
+    name VARCHAR ( 50 ) UNIQUE NOT NULL,
+    email VARCHAR ( 255 ) UNIQUE NOT NULL,
+    age INT NOT NULL
+);
+
+DROP TABLE IF EXISTS users;
+
+INSERT INTO users(name, email, age)
+VALUES (?, ?, ?);
+
+DELETE FROM users WHERE name = 'ebonat';
+
+SELECT name FROM users;
+SELECT name, age FROM users;
+SELECT * FROM users;
+
+SELECT * FROM users WHERE frag_count = 0;
+SELECT * FROM users WHERE age > 40;
+SELECT * FROM users WHERE age > 40 LIMIT 1;
+SELECT * FROM users WHERE frag_count = 0 AND age > 40;
+SELECT * FROM users WHERE frag_count = 0 AND age > 40 ORDER BY age ASC;
+
+SELECT * FROM users
+WHERE
+    frag_count = 0 AND
+    age > 40
+ORDER BY
+    age DESC;
+
+SELECT * FROM users
+WHERE
+        frag_count = 0 AND
+        age > 40 AND
+        name LIKE 'kw%'
+ORDER BY
+    age ASC;
+
+SELECT * FROM users
+WHERE
+        frag_count = 0 AND
+        age > 40 AND
+        name NOT LIKE 'kw%'
+ORDER BY
+    age ASC;
